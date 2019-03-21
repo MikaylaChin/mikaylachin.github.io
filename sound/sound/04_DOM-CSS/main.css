@@ -1,0 +1,23 @@
+body {
+  margin: 50px auto;
+  max-width: 1000px;
+  font-family: monospace;
+}
+
+
+.blackBG {
+  padding: 100px;
+  background-color: #212121;
+  color: #ffffff;
+}
+
+#buttonDiv {
+  padding: 50px;
+}
+
+#buttonDiv button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #212121;
+  color: #ffffff;
+}
