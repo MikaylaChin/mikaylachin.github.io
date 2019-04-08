@@ -1,26 +1,8 @@
-/*$gray: #EAF2F5;
-$mediumpink: #A3746A;
-$red: #731406;
-$darkpink: #8D5049;
-$lightpink: #D9BDB7;
-
 $gray: #EAF2F4;
-$mediumpink: #23201E;
-$red: #8C5E57;
-$darkpink: #A67F77;
-$lightpink: #3E0000;
-
-$gray: #A77E8F;
-$mediumpink: #D9DBD5;
-$red: #8E4B39;
-$darkpink: #590E03;
-$lightpink: #DC143C;*/
-
-$gray: #EAF2F4;
-$mediumpink: #DC143C;
-$red: #CD5C5C;
-$darkpink: #FF6347;
-$lightpink: #FFEBCD;
+$brightpink: #DC143C;
+$pink: #C45858;
+$orange: #FF6347;
+$darkgray: #202020;
 
 $laptop: 1200px;
 $tablet: 768px;
@@ -28,71 +10,77 @@ $mobile: 480px;
 
 html {
 	box-sizing: border-box;
+	overflow: auto;
+	overflow-wrap: break-word;
 }
 
 /* Header, Navigation Menu */
 .header {
 	position: fixed;
-    left:0;
-    right:0;
-    top:0;
+    left: 0;
+    right: 0;
+    top: 0;
 	z-index: 10;
-	background-color: $mediumpink;
 	text-align: center;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 	justify-content: right;
-	align-items: right;
-	padding: 1em;
+	padding: 1em 1em 0 1em;
 	grid-area: showcase;
 	min-height: 50px;
 	background-size: cover;
 	background-position: center;
-	background: rgba(163,116,106,0.9);
+	background: rgba(196,88,88,0.9);
 	margin: 0;
+	justify-self: end;
+	overflow: auto;
 }
 .header ul {
 	list-style-type: none;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 	justify-content: right;
-	align-items: right;
 	padding: 0;
 	margin: 0;
 	text-align: center;
-	transition: cubic-bezier(0.73, 0.09, 0.21, 0.96) 250ms;
-}
-.header li {
-	justify-content: right;
-	align-items: right;
+	/*transition: cubic-bezier(0.73, 0.09, 0.21, 0.96) 250ms;*/
 }
 .header img {
 	width: 50px;
+	padding: 0;
+}
+.icon {
+	justify-self: start;
+}
+/* Footer */
+.footer {
+	text-align: center;
+	padding: 1em 1em 0 1em;
+	overflow: auto;
+	background-size: cover;
+	background-position: center;
+	background: rgba(196,88,88,0.9);
 }
 
-/*h1 {
+h1 {
 	text-align: center;
-	color: $red;
 	font-weight: bold;
-	grid-column-end: span 3;
+	grid-column-end: span;
 }
 h2 {
-	color: $black;
-	grid-column-end: span 3;
+	font-weight: bold;
+	grid-column-end: span;
 }
 h3 {
-	color: $gray;
-	grid-column-end: span 3;
+	font-weight: bold;
+	grid-column-end: span;
 }
 h4 {
-	color: $red;
-	grid-column-end: span 3;
+	grid-column-end: span;
 	margin: 0;
 }
-p {
-	grid-column-end: span 3;
-}
-*/
+
+
 /* Whole Page */
 body {
 	background-size: cover;
@@ -124,78 +112,176 @@ body {
 	display: grid;
 	grid-template-columns: auto;
 }
+
 a {
 	text-decoration: none;
+	color: #202020;
 }
 a:link {
-	color: $lightpink;
+	color: #DC143C;
 }
 a:visited {
-	color: $gray;
+	color: #EAF2F4;
 }
 a:hover {
-	color: $darkpink;
+	color: #DC143C;
 }
 a:active {
-	color: $gray;
+	color: #202020;
 }
 
 @supports (display: grid) {
 	.wrapper > * {
 		width: auto;
 		margin: 0;
-		/*grid-template-columns: 3fr 1fr;*/
 	}
-
-/* Footer */
-.footer {
-	background-color: $mediumpink;
-	margin: 0;
-	display: grid;
-	justify-content: center;
-}
-.footer img{
-	width: 7%;
-	padding: 1em;
-	align-content: center;
-	justify-content: center;
-}
 
 /* Gallery, Images */
 .gallery {
 	display: grid;
 	grid-gap: 1em;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	grid-column: 1/3;
+	grid-template-columns: repeat(4, minmax(200px, 1fr));
+	/*grid-column: 1/3;*/
 }
-.gallery img{
-	display: block;
-	object-fit: cover;
-	border: 0;
-	width: 100%;
-	height: auto;
+.gallery h3 {
+	background: #FF6347;
+	color: #202020;
+	text-align: center;
+	float: center;
+	grid-column: 0/5;
 }
+.gallery iframe {
+	max-width: 200px;
+	max-height: 200px;
+}
+
+/* Styles the lightbox, removes it from sight and adds the fade-in transition - gray background */
+
+.lightbox-target {
+position: fixed;
+top: -100%;
+width: 100%;
+background: rgba(0,0,0,.7);
+width: 100%;
+opacity: 0;
+-webkit-transition: opacity .5s ease-in-out;
+-moz-transition: opacity .5s ease-in-out;
+-o-transition: opacity .5s ease-in-out;
+transition: opacity .5s ease-in-out;
+overflow: hidden;
+}
+
+/* Styles the lightbox image, centers it vertically and horizontally, adds the zoom-in transition and makes it responsive using a combination of margin and absolute positioning */
+
+.lightbox-target img {
+margin: auto;
+position: absolute;
+top: 0;
+left:0;
+right:0;
+bottom: 0;
+max-height: 0%;
+max-width: 0%;
+border: 3px solid white;
+box-shadow: 0px 0px 8px rgba(0,0,0,.3);
+box-sizing: border-box;
+-webkit-transition: .5s ease-in-out;
+-moz-transition: .5s ease-in-out;
+-o-transition: .5s ease-in-out;
+transition: .5s ease-in-out;
+}
+
+/* Styles the close link, adds the slide down transition - X button */
+
+a.lightbox-close {
+display: block;
+width:50px;
+height:50px;
+box-sizing: border-box;
+color: #DC143C;
+text-decoration: none;
+position: absolute;
+top: -80px;
+right: 0;
+-webkit-transition: .5s ease-in-out;
+-moz-transition: .5s ease-in-out;
+-o-transition: .5s ease-in-out;
+transition: .5s ease-in-out;
+}
+
+/* Provides part of the "X" to eliminate an image from the close link - left and right X parts */
+
+a.lightbox-close:before {
+content: "";
+display: block;
+height: 30px;
+width: 1px;
+background: black;
+position: absolute;
+left: 26px;
+top:10px;
+-webkit-transform:rotate(45deg);
+-moz-transform:rotate(45deg);
+-o-transform:rotate(45deg);
+transform:rotate(45deg);
+}
+a.lightbox-close:after {
+content: "";
+display: block;
+height: 30px;
+width: 1px;
+background: black;
+position: absolute;
+left: 26px;
+top:10px;
+-webkit-transform:rotate(-45deg);
+-moz-transform:rotate(-45deg);
+-o-transform:rotate(-45deg);
+transform:rotate(-45deg);
+}
+
+/* Uses the :target pseudo-class to perform the animations upon clicking the .lightbox-target anchor */
+
+.lightbox-target:target {
+opacity: 1;
+top: 0;
+bottom: 0;
+}
+
+.lightbox-target:target img {
+max-height: 100%;
+max-width: 100%;
+}
+
+.lightbox-target:target a.lightbox-close {
+top: 0px;
+}
+
 
 /* Contact Page */
 .contact {
-	color: $red;
-	background-color: rgba(white,white,white,0.7);
-	padding: 3em 10em 1em 10em;
+	background-color: #EAF2F4;
+	padding: 10% 20% 5% 20%;
 }
-.contact svg {
-	width: 50px;
-	height: 50px;
-}
-.submit {
-	color: $darkpink;
-	background: $gray;
-	font-family: Montserrat, sans-serif;
+.contact input, textarea {
 	padding: .5rem 2rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
     font-size: 1rem;
     border: none;
 }
-
+.submit {
+	color: #202020;
+	background: #C45858;
+	font-family: Montserrat, sans-serif;
+	padding: .5rem 2rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    border: none;
+}
+.submit:hover {
+	background: #DC143C;
+	color: #EAF2F4;
+}
 .wrapper {
 	display: grid;
 	grid-gap: 1em;
@@ -204,11 +290,17 @@ a:active {
 	/*margin: 5em 0 2em 0;
 	padding: 0 5em 0 5em;*/
 	background-position: fixed;
+	overflow: auto;
+	overflow-wrap: break-word;
 }
 .grid {
     display: grid;
     grid-gap: 1em;
     /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
+}
+.arrow {
+	width: 2em;
+	position: fixed;
 }
 
 }
@@ -219,46 +311,31 @@ a:active {
 		.wrapper {
 			max-width: none;
 			display: grid;
-			/*grid-template-columns: 15em auto;*/
 		}
 		.header {
 			grid-column: 1/4;
 		}
-		/*.main {
-			grid-column: 1/3;
-		}*/
-		/*.sidebar {
-			grid-column: 3/4;
-			grid-row: 2/3;
+		.body {
+			padding: 10%;
 		}
-		/*.footer {
+		.footer {
 			grid-column: 1/4;
-		}*/
+		}
 	}
 
 	@media screen and (min-width: 50em) {
 		.wrapper {
-			/*grid-template-columns: 15em auto 15em;*/
+			max-width: none;
+			display: grid;
 		}
 		.header {
 			grid-column: 1/4;
 		}
-		/*.sidebar {
-			display: inherit;
-			grid-template-columns: inherit;
-			grid-column: 3/4;
-			grid-row: 2/3;
+		.body {
+			padding: 10%;
 		}
-		.sidebar:last-of-type {
-			grid-column: 3/4;
-		}*/
-		/*.main {
-			grid-row: 2;
-			grid-column: 1/3;
-			z-index: 1;
-		}*/
-		/*.footer {
+		.footer {
 			grid-column: 1/4;
-		}*/
+		}
 	}
 }
