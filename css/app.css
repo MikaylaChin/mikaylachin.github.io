@@ -191,6 +191,9 @@ a:active {
 	border-radius: 0;
 	box-shadow: none;
 }
+img:hover {
+	transform: scale;
+}
 /* Contact Page */
 .contact {
 	background-color: #EAF2F4;
@@ -257,6 +260,16 @@ a:active {
     		text-align: center;
     		justify-content: center;
     		padding: 1%;
+  		}
+  		.gallery{
+  			display: flex;
+  			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: baseline;
+			flex-direction: column;
+  		}
+  		.gallery img {
+  			width: 100%;
   		}
 		.footer {
 			grid-column: 1/4;
